@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/For_Intern/static/css/main.dbdedb85.css",
+    "main.js": "/For_Intern/static/js/main.dd4077ff.js",
+    "index.html": "/For_Intern/index.html",
+    "main.dbdedb85.css.map": "/For_Intern/static/css/main.dbdedb85.css.map",
+    "main.dd4077ff.js.map": "/For_Intern/static/js/main.dd4077ff.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dbdedb85.css",
+    "static/js/main.dd4077ff.js"
+  ]
+}
