@@ -12,7 +12,7 @@ function createTestApp() {
   app.use(express.urlencoded({ extended: true }));
   app.use(
     session({
-      secret: 'test-secret',
+      secret: 'test-session-key',
       resave: false,
       saveUninitialized: false
     })

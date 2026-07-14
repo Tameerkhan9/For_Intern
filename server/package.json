@@ -1,7 +1,7 @@
 {
-  "name": "necop-backend",
+  "name": "intern-backend",
   "version": "1.0.0",
-  "description": "NECOP Job Portal Backend API",
+  "description": "Intern Portal Backend API",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -9,11 +9,11 @@
     "test": "jest --detectOpenHandles"
   },
   "keywords": [
-    "necop",
+    "intern",
     "job-portal",
     "mern"
   ],
-  "author": "NECOP Team",
+  "author": "Intern Portal Team",
   "license": "MIT",
   "dependencies": {
     "axios": "^1.4.0",

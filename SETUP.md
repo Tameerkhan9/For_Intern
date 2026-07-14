@@ -17,7 +17,7 @@ Your intern job portal is now set up as a complete **MERN + Python** stack:
 The easiest way to get everything running with one command:
 
 ```bash
-cd e:\Necop_MERN
+cd e:\Intern_MERN
 docker-compose up
 ```
 
@@ -124,11 +124,12 @@ mongod
 ```
 PORT=5000
 MONGODB_URI=mongodb://localhost:27017/intern_portal
-JWT_SECRET=your_super_secret_jwt_key_change_this_in_production
+JWT_KEY=your_jwt_key_change_this_in_production
 JWT_EXPIRE=7d
 PYTHON_SERVICE_URL=http://localhost:5001
 NODE_ENV=development
 CORS_ORIGIN=http://localhost:3000
+SESSION_KEY=replace_with_long_random_session_key
 ```
 
 ### Frontend (.env)
@@ -145,7 +146,7 @@ FLASK_PORT=5001
 ## Project Structure
 
 ```
-Necop_MERN/
+Intern_MERN/
 ├── client/                 # React Frontend
 │   ├── src/
 │   │   ├── components/     # Reusable components (Navbar)

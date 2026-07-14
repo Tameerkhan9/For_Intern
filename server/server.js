@@ -65,7 +65,7 @@ app.options('*', cors({
 // Middleware - Session for access-code gate
 // sameSite: 'none' is required when frontend and API are on different domains (e.g. Render)
 app.use(session({
-  secret: process.env.SESSION_SECRET || 'change_this_session_secret',
+  secret: process.env.SESSION_KEY || 'change_this_session_key',
   resave: false,
   saveUninitialized: false,
   cookie: {

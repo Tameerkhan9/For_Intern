@@ -50,7 +50,7 @@
 │  │       └─ NO → Show AccessGate component                                     │  │
 │  │                                                                               │  │
 │  │    ┌──────────────────────────────────────────────────────┐                │  │
-│  │    │     🔐 SECRET PORTAL                                 │                │  │
+│  │    │     INTERN PORTAL                                  │                │  │
 │  │    │  Authorized Access Only                              │                │  │
 │  │    │                                                      │                │  │
 │  │    │  Enter Code: [A3F2-B8K1-L9M4________________]        │                │  │
@@ -183,7 +183,7 @@
 │  │     codeId: accessCode._id,                                                │  │
 │  │     userId: accessCode.userId,                                             │  │
 │  │     fingerprint: fingerprint                                               │  │
-│  │   }, JWT_SECRET, { expiresIn: '7d' })                                     │  │
+│  │   }, JWT_KEY, { expiresIn: '7d' })                                        │  │
 │  │                                                                             │  │
 │  │   // Increment usage                                                       │  │
 │  │   accessCode.uses++                                                        │  │
@@ -241,7 +241,7 @@
 │  │  ✓ PORTAL UNLOCKED                                                           │  │
 │  │                                                                               │  │
 │  │  User can now:                                                               │  │
-│  │  • Browse secret jobs                                                        │  │
+│  │  • Browse internship jobs                                                    │  │
 │  │  • Apply for positions                                                       │  │
 │  │  • Upload CV                                                                 │  │
 │  │  • Edit profile                                                              │  │

@@ -50,7 +50,7 @@ Intern_MERN/
 cd server
 npm install
 cp .env.example .env
-# Edit .env with your MongoDB URI and JWT secret
+# Edit .env with your MongoDB URI and JWT key
 npm start
 ```
 
@@ -75,7 +75,8 @@ python app.py
 ### Backend (.env)
 ```
 MONGODB_URI=mongodb://localhost:27017/intern_portal
-JWT_SECRET=your_jwt_secret_key
+JWT_KEY=your_jwt_key
+SESSION_KEY=your_session_key
 PORT=5000
 PYTHON_SERVICE_URL=http://localhost:5001
 ```

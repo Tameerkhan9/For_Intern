@@ -45,7 +45,7 @@ const allowSessionOrJwt = (req, res, next) => {
   const authHeader = req.headers.authorization;
   if (authHeader && authHeader.startsWith('Bearer ')) {
     try {
-      const decoded = jwt.verify(authHeader.slice(7), process.env.JWT_SECRET);
+      const decoded = jwt.verify(authHeader.slice(7), process.env.JWT_KEY);
       req.jwtUser = decoded;
       return next();
     } catch {

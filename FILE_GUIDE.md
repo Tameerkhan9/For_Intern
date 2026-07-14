@@ -6,10 +6,10 @@
 
 | File | Purpose |
 |------|---------|
-| `SECRET_PORTAL_IMPLEMENTATION.md` | **START HERE** - Complete system overview with examples |
-| `SECRET_PORTAL_QUICK_START.md` | Quick reference for admins using the CLI |
+| `ACCESS_GUIDE.md` | Access code system overview |
+| `ACCESS_QUICK_START.md` | Quick reference for admins using the CLI |
 | `ARCHITECTURE_DIAGRAM.md` | Visual flow diagrams of how system works |
-| `SECRET_ACCESS_GUIDE.md` | Comprehensive admin manual (400+ lines) |
+| `SETUP.md` | Full local setup instructions |
 
 ### 💻 Backend Code
 
@@ -35,7 +35,7 @@
 
 ### Step 1: Read the Overview
 ```
-→ Open: SECRET_PORTAL_IMPLEMENTATION.md
+→ Open: ACCESS_GUIDE.md
   Read: What was added, how it works, use examples
 ```
 
@@ -75,12 +75,12 @@ node admin-cli.js generate intern@example.com
 ## 📖 Documentation Deep Dive
 
 ### For Admins
-- **Quick Start:** `SECRET_PORTAL_QUICK_START.md`
+- **Quick Start:** `ACCESS_QUICK_START.md`
   - Command reference
   - Security features
   - Troubleshooting
   
-- **Full Guide:** `SECRET_ACCESS_GUIDE.md`
+- **Full Guide:** `ACCESS_GUIDE.md`
   - 400+ lines of detailed documentation
   - API examples with curl
   - Database schema details
@@ -95,7 +95,7 @@ node admin-cli.js generate intern@example.com
   - Component relationships
   - Security flow
 
-- **Implementation:** `SECRET_PORTAL_IMPLEMENTATION.md`
+- **Implementation:** `ACCESS_GUIDE.md`
   - Overview of all features
   - Database schema
   - API endpoints
@@ -327,7 +327,7 @@ Admin:
 ### In `server/.env`
 ```
 MONGODB_URI=mongodb://localhost:27017/intern_portal
-JWT_SECRET=your_jwt_secret_here
+JWT_KEY=your_jwt_key_here
 JWT_EXPIRE=7d
 PYTHON_SERVICE_URL=http://localhost:5001
 NODE_ENV=development
@@ -401,12 +401,12 @@ MongoDB accesscodes Collection
 
 ## 🎓 Learning Path
 
-1. **Read:** `SECRET_PORTAL_IMPLEMENTATION.md` - Understand what was built
+1. **Read:** `ACCESS_GUIDE.md` - Understand what was built
 2. **Read:** `ARCHITECTURE_DIAGRAM.md` - Understand how it works
 3. **Run:** `node admin-cli.js generate test@example.com` - Try it
 4. **Test:** Open http://localhost:3000 - Use the portal
 5. **Monitor:** `node admin-cli.js list` - See your codes
-6. **Reference:** `SECRET_ACCESS_GUIDE.md` - Deep dive
+6. **Reference:** `ACCESS_GUIDE.md` - Deep dive
 
 ---
 
@@ -414,7 +414,7 @@ MongoDB accesscodes Collection
 
 - [ ] MongoDB in cloud (MongoDB Atlas)
 - [ ] HTTPS/TLS enabled
-- [ ] Strong JWT secret configured
+- [ ] Strong JWT key configured
 - [ ] Rate limiting on API endpoints
 - [ ] CORS properly configured
 - [ ] Admin CLI restricted to admins only
@@ -428,10 +428,10 @@ MongoDB accesscodes Collection
 ## 📞 Support
 
 **Questions about:**
-- System overview → Read `SECRET_PORTAL_IMPLEMENTATION.md`
-- Admin commands → Read `SECRET_PORTAL_QUICK_START.md`
+- System overview → Read `ACCESS_GUIDE.md`
+- Admin commands → Read `ACCESS_QUICK_START.md`
 - Architecture → Read `ARCHITECTURE_DIAGRAM.md`
-- Detailed features → Read `SECRET_ACCESS_GUIDE.md`
+- Detailed features → Read `ACCESS_GUIDE.md`
 - Code → Read inline comments in source files
 
 **Error messages:**
@@ -447,4 +447,4 @@ MongoDB accesscodes Collection
 
 All files are in place. All documentation is comprehensive.
 
-Start with `SECRET_PORTAL_IMPLEMENTATION.md` for the full overview! 🚀
+Start with `ACCESS_GUIDE.md` for the full overview! 🚀

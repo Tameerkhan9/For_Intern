@@ -1,4 +1,4 @@
-﻿const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 const qualificationSchema = new mongoose.Schema({
   level: String,

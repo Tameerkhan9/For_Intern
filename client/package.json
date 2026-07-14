@@ -1,7 +1,7 @@
 {
-  "name": "necop-frontend",
+  "name": "intern-frontend",
   "version": "1.0.0",
-  "description": "NECOP Job Portal - React Frontend",
+  "description": "Intern Portal - React Frontend",
   "private": true,
   "proxy": "http://localhost:5000",
   "dependencies": {

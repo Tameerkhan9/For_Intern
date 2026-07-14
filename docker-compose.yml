@@ -3,7 +3,7 @@ version: '3.8'
 services:
   mongodb:
     image: mongo:latest
-    container_name: necop-mongodb
+    container_name: intern-mongodb
     ports:
       - "27017:27017"
     environment:
@@ -12,24 +12,25 @@ services:
     volumes:
       - mongo_data:/data/db
     networks:
-      - necop-network
+      - intern-network
 
   backend:
     build:
       context: ./server
       dockerfile: Dockerfile
-    container_name: necop-backend
+    container_name: intern-backend
     ports:
       - "5000:5000"
     environment:
-      MONGODB_URI: mongodb://admin:password@mongodb:27017/necop
-      JWT_SECRET: your_jwt_secret_key
+      MONGODB_URI: mongodb://admin:password@mongodb:27017/intern_portal
+      JWT_KEY: your_jwt_key
+      SESSION_KEY: your_session_key
       PYTHON_SERVICE_URL: http://python-service:5001
       NODE_ENV: production
     depends_on:
       - mongodb
     networks:
-      - necop-network
+      - intern-network
     volumes:
       - ./server/uploads:/app/uploads
 
@@ -37,20 +38,20 @@ services:
     build:
       context: ./python-service
       dockerfile: Dockerfile
-    container_name: necop-python-service
+    container_name: intern-python-service
     ports:
       - "5001:5001"
     environment:
       FLASK_ENV: production
       FLASK_PORT: 5001
     networks:
-      - necop-network
+      - intern-network
 
   frontend:
     build:
       context: ./client
       dockerfile: Dockerfile
-    container_name: necop-frontend
+    container_name: intern-frontend
     ports:
       - "3000:3000"
     environment:
@@ -58,11 +59,11 @@ services:
     depends_on:
       - backend
     networks:
-      - necop-network
+      - intern-network
 
 volumes:
   mongo_data:
 
 networks:
-  necop-network:
+  intern-network:
     driver: bridge
