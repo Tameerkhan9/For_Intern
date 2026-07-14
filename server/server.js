@@ -62,8 +62,12 @@ app.options('*', cors({
   }
 }));
 
-// Middleware - Session for access-code gate
-// sameSite: 'none' is required when frontend and API are on different domains (e.g. Render)
+# Middleware - Session for access-code gate
+// Use SameSite=None only when frontend is on a different origin (split hosting)
+const crossOriginFrontend = Boolean(
+  process.env.CORS_ORIGIN &&
+  process.env.CORS_ORIGIN.split(',').some((o) => o.trim() && !o.includes('localhost') && !o.includes('127.0.0.1'))
+);
 app.use(session({
   secret: process.env.SESSION_KEY || 'change_this_session_key',
   resave: false,
@@ -71,7 +75,7 @@ app.use(session({
   cookie: {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
-    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+    sameSite: crossOriginFrontend ? 'none' : 'lax',
     maxAge: 60 * 60 * 1000 // 1 hour
   }
 }));
@@ -113,6 +117,18 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// Serve React build (single Render Web Service = API + frontend)
+const clientBuildPath = path.join(__dirname, 'public');
+if (fs.existsSync(clientBuildPath)) {
+  app.use(express.static(clientBuildPath));
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api') || req.path.startsWith('/uploads')) {
+      return next();
+    }
+    res.sendFile(path.join(clientBuildPath, 'index.html'));
+  });
+}
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
@@ -122,7 +138,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-// 404 handler
+// 404 handler (API-only when no React build is present)
 app.use((req, res) => {
   res.status(404).json({ error: 'Route not found' });
 });

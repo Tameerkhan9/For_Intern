@@ -341,9 +341,7 @@ const useAuthBlob = (filename) => {
     let revoked = false;
     setLoading(true);
     const token = (sessionStorage.getItem('token') || localStorage.getItem('token'));
-    const apiBase = process.env.NODE_ENV === 'development'
-      ? '/api'
-      : (process.env.REACT_APP_API_URL || '/api');
+    const apiBase = (process.env.REACT_APP_API_URL || '/api');
     fetch(`${apiBase}/intern-applications/file/${encodeURIComponent(filename)}`, {
       headers: token ? { Authorization: `Bearer ${token}` } : {}
     })
@@ -1047,9 +1045,7 @@ const Dashboard = () => {
       return;
     }
 
-    const apiBase = process.env.NODE_ENV === 'development'
-      ? '/api'
-      : (process.env.REACT_APP_API_URL || '/api');
+    const apiBase = (process.env.REACT_APP_API_URL || '/api');
     const token = (sessionStorage.getItem('token') || localStorage.getItem('token'));
 
     const toDataUrl = async (filename) => {
@@ -1239,9 +1235,7 @@ const Dashboard = () => {
 
   const printApplicationDocuments = useCallback(async (app) => {
     if (!app) return;
-    const apiBase = process.env.NODE_ENV === 'development'
-      ? '/api'
-      : (process.env.REACT_APP_API_URL || '/api');
+    const apiBase = (process.env.REACT_APP_API_URL || '/api');
     const token = (sessionStorage.getItem('token') || localStorage.getItem('token'));
     const toDataUrl = async (filename) => {
       if (!filename) return null;
@@ -1319,9 +1313,7 @@ const Dashboard = () => {
 
   const openPdfDocumentsForPrint = useCallback(async (app) => {
     if (!app) return;
-    const apiBase = process.env.NODE_ENV === 'development'
-      ? '/api'
-      : (process.env.REACT_APP_API_URL || '/api');
+    const apiBase = (process.env.REACT_APP_API_URL || '/api');
     const token = (sessionStorage.getItem('token') || localStorage.getItem('token'));
     const pdfFiles = [
       app.cv,
@@ -1408,9 +1400,7 @@ const Dashboard = () => {
         return;
       }
 
-      const apiBase = process.env.NODE_ENV === 'development'
-        ? '/api'
-        : (process.env.REACT_APP_API_URL || '/api');
+      const apiBase = (process.env.REACT_APP_API_URL || '/api');
 
       const response = await fetch(`${apiBase}/cv/download/${encodeURIComponent(filename)}`, {
         method: 'GET',

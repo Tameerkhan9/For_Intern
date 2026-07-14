@@ -33,3 +33,6 @@ intern.db
 
 # Uploads
 uploads/
+
+# Built React files served by Express on Render
+server/public/

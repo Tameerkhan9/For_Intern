@@ -141,7 +141,7 @@ function App() {
   const loadingView = <div className="flex items-center justify-center h-screen bg-gray-900"><div className="text-white">Loading...</div></div>;
 
   return (
-    <Router basename="/For_Intern">
+    <Router>
       <AuthProvider>
         <div className="min-h-screen bg-white">
           <NavbarWrapper />
