@@ -1,7 +1,10 @@
 import axios from 'axios';
 import api from './api';
 
-const API_URL = process.env.REACT_APP_API_URL || '/api';
+const API_URL =
+  process.env.NODE_ENV === 'development'
+    ? '/api'
+    : (process.env.REACT_APP_API_URL || '/api');
 
 // Dedicated client for portal-session endpoints.
 // Intentionally does NOT attach dashboard JWT Authorization header.
