@@ -57,9 +57,15 @@ export const AuthProvider = ({ children }) => {
       setIsAuthenticated(true);
       return { success: true, user: response.data.user };
     } catch (error) {
-      return { 
-        success: false, 
-        error: error.response?.data?.error || 'Login failed' 
+      const message =
+        error.response?.data?.error ||
+        (error.message === 'Network Error'
+          ? 'Cannot reach server. Is the backend running on port 5000?'
+          : error.message) ||
+        'Login failed';
+      return {
+        success: false,
+        error: message
       };
     } finally {
       setLoading(false);
