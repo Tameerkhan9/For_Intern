@@ -7,7 +7,7 @@
     "node": "20.x"
   },
   "scripts": {
-    "build": "npm install --prefix server && npm install --prefix client && npm run build --prefix client && rm -rf server/public && mkdir -p server/public && cp -r client/build/. server/public/",
+    "build": "npm install --prefix server && npm install --prefix client && node scripts/build-client.js && node scripts/copy-client.js",
     "start": "npm start --prefix server"
   }
 }
