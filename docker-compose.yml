@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: necop-mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - necop-network
+
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: necop-backend
+    ports:
+      - "5000:5000"
+    environment:
+      MONGODB_URI: mongodb://admin:password@mongodb:27017/necop
+      JWT_SECRET: your_jwt_secret_key
+      PYTHON_SERVICE_URL: http://python-service:5001
+      NODE_ENV: production
+    depends_on:
+      - mongodb
+    networks:
+      - necop-network
+    volumes:
+      - ./server/uploads:/app/uploads
+
+  python-service:
+    build:
+      context: ./python-service
+      dockerfile: Dockerfile
+    container_name: necop-python-service
+    ports:
+      - "5001:5001"
+    environment:
+      FLASK_ENV: production
+      FLASK_PORT: 5001
+    networks:
+      - necop-network
+
+  frontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: necop-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      REACT_APP_API_URL: http://localhost:5000/api
+    depends_on:
+      - backend
+    networks:
+      - necop-network
+
+volumes:
+  mongo_data:
+
+networks:
+  necop-network:
+    driver: bridge
