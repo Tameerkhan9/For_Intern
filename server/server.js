@@ -62,7 +62,7 @@ app.options('*', cors({
   }
 }));
 
-# Middleware - Session for access-code gate
+// Middleware - Session for access-code gate
 // Use SameSite=None only when frontend is on a different origin (split hosting)
 const crossOriginFrontend = Boolean(
   process.env.CORS_ORIGIN &&
