@@ -1,0 +1,13 @@
+{
+  "name": "intern-portal",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Intern Portal - API + React on one Render Web Service",
+  "engines": {
+    "node": "20.x"
+  },
+  "scripts": {
+    "build": "npm install --prefix server && npm install --prefix client && npm run build --prefix client && rm -rf server/public && mkdir -p server/public && cp -r client/build/. server/public/",
+    "start": "npm start --prefix server"
+  }
+}

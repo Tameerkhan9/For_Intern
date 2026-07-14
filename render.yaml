@@ -1,17 +1,14 @@
 # Render Blueprint — Intern Portal (ONE Web Service)
-# Frontend (React) is built, then served by Express together with the API.
-# Overall site is DYNAMIC (API + MongoDB). UI files are static assets after build.
-#
-# Dashboard: New → Blueprint → connect Tameerkhan9/For_Intern
-# Required when prompted: MONGODB_URI (Atlas, db name intern_portal)
+# New → Blueprint → Tameerkhan9/For_Intern
+# Or Web Service with Build = npm run build, Start = npm start
 
 services:
   - type: web
     name: intern-portal
     runtime: node
     plan: free
-    buildCommand: npm install --prefix server && npm install --prefix client && npm run build --prefix client && rm -rf server/public && mkdir -p server/public && cp -r client/build/. server/public/
-    startCommand: npm start --prefix server
+    buildCommand: npm run build
+    startCommand: npm start
     healthCheckPath: /api/health
     envVars:
       - key: NODE_ENV
@@ -24,6 +21,5 @@ services:
         value: 7d
       - key: MONGODB_URI
         sync: false
-      # Same-origin deploy: leave CORS_ORIGIN empty (not needed)
       - key: CORS_ORIGIN
         sync: false
