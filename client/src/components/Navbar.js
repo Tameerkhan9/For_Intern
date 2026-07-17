@@ -23,8 +23,10 @@ const NavButton = ({ active, children, className = '', ...props }) => (
   <button
     type="button"
     className={cx(
-      'inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-semibold transition',
-      active ? 'bg-blue-50 text-blue-700' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-950',
+      'inline-flex items-center gap-2 rounded-xl px-3.5 py-2.5 text-sm font-bold transition',
+      active
+        ? 'bg-blue-50 text-blue-700 shadow-sm ring-1 ring-inset ring-blue-100'
+        : 'text-slate-600 hover:bg-slate-100 hover:text-slate-950',
       className
     )}
     {...props}
@@ -120,22 +122,22 @@ const Navbar = () => {
   const brandTarget = isDashboardArea && isAuthenticated ? '/dashboard' : isPortalArea ? '/portal' : '/';
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur dark:border-gray-800 dark:bg-gray-950/95">
+    <nav className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 shadow-[0_8px_30px_-26px_rgba(15,23,42,0.45)] backdrop-blur-xl dark:border-slate-800 dark:bg-slate-950/90">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between gap-4">
-          <Link to={brandTarget} className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-md bg-blue-600 text-white">
+        <div className="flex h-[4.5rem] items-center justify-between gap-4">
+          <Link to={brandTarget} className="group flex items-center gap-3">
+            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-950 text-white shadow-md shadow-slate-900/15 transition group-hover:-translate-y-0.5 group-hover:bg-blue-700 dark:bg-blue-600">
               <FaMicrochip />
             </div>
             <div className="leading-tight">
-              <p className="text-base font-bold text-gray-950 dark:text-white">Intern</p>
-              <p className="hidden text-xs font-semibold text-gray-500 dark:text-gray-400 sm:block">
+              <p className="text-base font-extrabold tracking-tight text-slate-950 dark:text-white">Intern Portal</p>
+              <p className="hidden text-[11px] font-bold uppercase tracking-[0.12em] text-slate-400 dark:text-slate-500 sm:block">
                 {isDashboardArea ? 'Admin console' : 'Career portal'}
               </p>
             </div>
           </Link>
 
-          <div className="hidden items-center gap-1 md:flex">
+          <div className="hidden items-center gap-1 rounded-2xl border border-slate-200 bg-slate-50/80 p-1.5 md:flex dark:border-slate-800 dark:bg-slate-900/80">
             {navItems.map((item) => {
               const Icon = item.icon;
               return (
@@ -152,7 +154,7 @@ const Navbar = () => {
             {isPortalArea && (
               <Link
                 to="/jobs"
-                className="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-semibold text-gray-600 transition hover:bg-gray-50 hover:text-gray-950"
+                className="inline-flex items-center gap-2 rounded-xl px-3.5 py-2.5 text-sm font-bold text-slate-600 transition hover:bg-white hover:text-slate-950 hover:shadow-sm"
               >
                 <FaBriefcase className="text-xs" />
                 Jobs
@@ -164,7 +166,7 @@ const Navbar = () => {
             <button
               type="button"
               onClick={() => setDarkMode((value) => !value)}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-gray-200 text-gray-600 transition hover:bg-gray-50 hover:text-gray-950 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-900"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-500 shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-50 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
               aria-label="Toggle dark mode"
               title={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
             >
@@ -172,7 +174,7 @@ const Navbar = () => {
             </button>
 
             {isDashboardArea && isAuthenticated && (
-              <div className="hidden items-center gap-2 rounded-md border border-gray-200 px-3 py-2 text-sm font-semibold text-gray-700 lg:flex">
+              <div className="hidden items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-slate-700 shadow-sm lg:flex">
                 <FaUserShield className="text-blue-700" />
                 {user?.name || 'Admin'}
               </div>
@@ -185,7 +187,7 @@ const Navbar = () => {
                     <button
                       type="button"
                       onClick={handleDashboardLogoutOnly}
-                      className="inline-flex items-center gap-2 rounded-md bg-gray-900 px-3 py-2.5 text-sm font-semibold text-white transition hover:bg-gray-800"
+                      className="inline-flex items-center gap-2 rounded-xl bg-slate-950 px-3 py-2.5 text-sm font-bold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-800"
                     >
                       <FaSignOutAlt />
                       Logout Super Admin
@@ -193,7 +195,7 @@ const Navbar = () => {
                     <button
                       type="button"
                       onClick={handleLogoutNormalDashboardAdmins}
-                      className="inline-flex items-center gap-2 rounded-md bg-red-600 px-3 py-2.5 text-sm font-semibold text-white transition hover:bg-red-700"
+                      className="inline-flex items-center gap-2 rounded-xl bg-red-600 px-3 py-2.5 text-sm font-bold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-red-700"
                     >
                       <FaSignOutAlt />
                       Logout Dashboard
@@ -201,7 +203,7 @@ const Navbar = () => {
                     <button
                       type="button"
                       onClick={handlePortalLogout}
-                      className="inline-flex items-center gap-2 rounded-md bg-amber-600 px-3 py-2.5 text-sm font-semibold text-white transition hover:bg-amber-700"
+                      className="inline-flex items-center gap-2 rounded-xl bg-amber-600 px-3 py-2.5 text-sm font-bold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-amber-700"
                     >
                       <FaSignOutAlt />
                       Logout Portal
@@ -244,7 +246,7 @@ const Navbar = () => {
 
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-gray-200 text-gray-700 md:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 shadow-sm md:hidden"
             onClick={() => setIsMenuOpen((value) => !value)}
             aria-label="Toggle menu"
           >

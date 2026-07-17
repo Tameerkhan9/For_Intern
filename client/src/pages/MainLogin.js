@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import { FaMicrochip } from 'react-icons/fa';
+import {
+  FaArrowRight,
+  FaBriefcase,
+  FaCheckCircle,
+  FaKey,
+  FaLock,
+  FaMicrochip,
+  FaUserShield
+} from 'react-icons/fa';
 import PasswordInput from '../components/PasswordInput';
 import { useAuth } from '../hooks/useAuth';
 import api from '../services/api';
@@ -61,19 +69,81 @@ const MainLogin = ({ onLoginSuccess, onAccessCodeSuccess }) => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-300 px-4 py-20">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full flex flex-col items-center">
-        <div className="w-full bg-gradient-to-r from-blue-700 to-blue-500 rounded-t-2xl py-8 flex flex-col items-center gap-2">
-          <FaMicrochip className="text-white text-4xl" />
-          <h1 className="text-3xl font-extrabold text-white tracking-wide">Intern Portal</h1>
-          <p className="text-blue-100 text-sm">Sign in to your account</p>
-        </div>
+    <div className="login-shell min-h-screen px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto flex min-h-[calc(100vh-4rem)] max-w-6xl items-center">
+        <div className="grid w-full overflow-hidden rounded-[2rem] border border-white/70 bg-white/90 shadow-[0_32px_90px_-35px_rgba(15,23,42,0.4)] backdrop-blur-xl lg:grid-cols-[1.08fr_0.92fr]">
+          <section className="relative hidden min-h-[680px] overflow-hidden bg-slate-950 p-12 text-white lg:flex lg:flex-col lg:justify-between">
+            <div className="login-orb login-orb-one" />
+            <div className="login-orb login-orb-two" />
 
-        <form onSubmit={handleSubmit} className="w-full px-8 py-6 space-y-5">
+            <div className="relative z-10">
+              <div className="inline-flex items-center gap-3 rounded-2xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur">
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500 text-lg shadow-lg shadow-blue-950/30">
+                  <FaMicrochip />
+                </span>
+                <div>
+                  <p className="font-bold tracking-tight">Intern Portal</p>
+                  <p className="text-xs text-slate-300">Career operations workspace</p>
+                </div>
+              </div>
+
+              <div className="mt-16 max-w-lg">
+                <p className="text-sm font-bold uppercase tracking-[0.22em] text-blue-300">One connected platform</p>
+                <h1 className="mt-5 text-5xl font-black leading-[1.08] tracking-tight">
+                  Build better internship experiences.
+                </h1>
+                <p className="mt-6 max-w-md text-base leading-7 text-slate-300">
+                  A focused workspace for applications, CVs, access management, and intern opportunities.
+                </p>
+              </div>
+            </div>
+
+            <div className="relative z-10 grid gap-3">
+              {[
+                { icon: FaBriefcase, text: 'Manage applications in one workspace' },
+                { icon: FaUserShield, text: 'Protected access for authorized users' },
+                { icon: FaCheckCircle, text: 'Simple, secure, and built for fast review' }
+              ].map((item) => (
+                <div key={item.text} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.07] px-4 py-3.5 text-sm text-slate-200 backdrop-blur">
+                  <item.icon className="shrink-0 text-blue-300" />
+                  {item.text}
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="flex min-h-[620px] flex-col justify-center p-6 sm:p-10 lg:p-12">
+            <div className="mx-auto w-full max-w-md">
+              <div className="mb-9">
+                <div className="mb-7 flex items-center gap-3 lg:hidden">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-950 text-white">
+                    <FaMicrochip />
+                  </span>
+                  <div>
+                    <p className="font-extrabold text-slate-950">Intern Portal</p>
+                    <p className="text-xs font-medium text-slate-500">Career operations workspace</p>
+                  </div>
+                </div>
+
+                <span className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-blue-700 ring-1 ring-blue-100">
+                  {showAccessCode ? <FaKey /> : <FaLock />}
+                  {showAccessCode ? 'Intern access' : 'Secure sign in'}
+                </span>
+                <h2 className="mt-5 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+                  {showAccessCode ? 'Enter your access code' : 'Welcome back'}
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-slate-500">
+                  {showAccessCode
+                    ? 'Use the code shared by your administrator to continue to the intern portal.'
+                    : 'Enter your account details to continue to your dashboard.'}
+                </p>
+              </div>
+
+              <form onSubmit={handleSubmit} className="space-y-5">
           {!showAccessCode && (
             <>
               <div>
-                <label className="block text-xs font-semibold text-gray-600 mb-1">Email</label>
+                <label className="mb-2 block text-sm font-bold text-slate-700">Email address</label>
                 <input
                   type="email"
                   name="email"
@@ -81,19 +151,21 @@ const MainLogin = ({ onLoginSuccess, onAccessCodeSuccess }) => {
                   onChange={handleChange}
                   required
                   disabled={loading}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent disabled:bg-gray-50"
+                  className="modern-input"
                   placeholder="your@email.com"
+                  autoComplete="email"
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-gray-600 mb-1">Password</label>
+                <label className="mb-2 block text-sm font-bold text-slate-700">Password</label>
                 <PasswordInput
                   name="password"
                   value={form.password}
                   onChange={handleChange}
                   required
                   disabled={loading}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent disabled:bg-gray-50"
+                  className="modern-input"
+                  placeholder="Enter your password"
                 />
               </div>
             </>
@@ -101,7 +173,7 @@ const MainLogin = ({ onLoginSuccess, onAccessCodeSuccess }) => {
 
           {showAccessCode && (
             <div>
-              <label className="block text-xs font-semibold text-gray-600 mb-1">Access Code</label>
+              <label className="mb-2 block text-sm font-bold text-slate-700">Access code</label>
               <input
                 type="text"
                 name="accessCode"
@@ -110,42 +182,50 @@ const MainLogin = ({ onLoginSuccess, onAccessCodeSuccess }) => {
                 required
                 maxLength={14}
                 disabled={loading}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent font-mono tracking-widest text-center text-lg disabled:bg-gray-50"
+                className="modern-input text-center font-mono text-lg font-bold uppercase tracking-[0.22em]"
                 placeholder="XXXX-XXXX-XXXX"
                 autoFocus
               />
-              <p className="text-xs text-gray-400 mt-1 text-center">
+              <p className="mt-2 text-center text-xs font-medium text-slate-400">
                 Enter the code provided by your administrator
               </p>
             </div>
           )}
 
-          <div className="text-center">
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-1.5">
             <button
               type="button"
               onClick={() => {
                 setShowAccessCode((value) => !value);
                 setForm({ email: '', password: '', accessCode: '' });
               }}
-              className="text-xs text-blue-600 font-semibold hover:underline"
+              className="flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold text-slate-600 transition hover:bg-white hover:text-blue-700 hover:shadow-sm"
             >
-              {showAccessCode ? 'Back to Sign In' : 'New intern? Enter access code instead'}
+              {showAccessCode ? <FaLock /> : <FaKey />}
+              {showAccessCode ? 'Back to account sign in' : 'New intern? Use an access code'}
             </button>
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 bg-gradient-to-r from-blue-600 to-blue-800 text-white font-bold rounded-lg hover:shadow-lg transition disabled:opacity-50 text-lg"
+            className="group flex w-full items-center justify-center gap-3 rounded-2xl bg-slate-950 px-5 py-4 text-base font-extrabold text-white shadow-lg shadow-slate-900/15 transition hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-900/20 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0"
           >
-            {loading
-              ? (showAccessCode ? 'Verifying...' : 'Signing In...')
-              : (showAccessCode ? 'Enter Portal' : 'Sign In')}
+            <span>
+              {loading
+                ? (showAccessCode ? 'Verifying...' : 'Signing in...')
+                : (showAccessCode ? 'Enter portal' : 'Sign in')}
+            </span>
+            {!loading && <FaArrowRight className="text-sm transition-transform group-hover:translate-x-1" />}
           </button>
-        </form>
+              </form>
 
-        <div className="w-full text-center pb-4 text-xs text-gray-400">
-          Copyright {new Date().getFullYear()} Intern Portal. All rights reserved.
+              <div className="mt-8 flex items-center justify-center gap-2 text-xs font-medium text-slate-400">
+                <FaLock className="text-[10px]" />
+                Secure access · Intern Portal © {new Date().getFullYear()}
+              </div>
+            </div>
+          </section>
         </div>
       </div>
     </div>

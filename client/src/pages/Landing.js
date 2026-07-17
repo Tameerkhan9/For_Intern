@@ -21,14 +21,14 @@ import { feedbackAPI } from '../services/feedbackAPI';
 import UploadCvModal from '../components/UploadCvModal';
 
 const ActionCard = ({ icon: Icon, title, description, action, children }) => (
-  <div className="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
+  <div className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_12px_35px_-28px_rgba(15,23,42,0.45)] transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-[0_20px_42px_-28px_rgba(37,99,235,0.32)]">
     <div className="flex items-start gap-4">
-      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-blue-50 text-blue-700">
+      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-700 ring-1 ring-inset ring-blue-100 transition group-hover:scale-105">
         <Icon />
       </div>
       <div className="min-w-0 flex-1">
-        <h3 className="text-lg font-bold text-gray-950">{title}</h3>
-        <p className="mt-2 text-sm leading-6 text-gray-500">{description}</p>
+        <h3 className="text-lg font-extrabold tracking-tight text-slate-950">{title}</h3>
+        <p className="mt-2 text-sm leading-6 text-slate-500">{description}</p>
       </div>
     </div>
     {children && <div className="mt-5">{children}</div>}
@@ -139,7 +139,7 @@ const Landing = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900">
+    <div className="min-h-screen bg-slate-50 text-slate-900">
       <UploadCvModal
         isOpen={isUploadModalOpen}
         onClose={handleCancelUpload}
@@ -149,17 +149,19 @@ const Landing = () => {
         uploading={uploading}
       />
 
-      <section id="home" className="border-b border-gray-200 bg-white px-4 py-10 sm:px-6 lg:px-8">
+      <section id="home" className="relative overflow-hidden border-b border-slate-200 bg-white px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+        <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-blue-100/70 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-40 left-1/4 h-80 w-80 rounded-full bg-indigo-100/50 blur-3xl" />
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-          <div>
+          <div className="relative">
             <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-sm font-semibold text-blue-700">
               <FaMicrochip />
               Intern Career Portal
             </div>
-            <h1 className="mt-5 max-w-3xl text-4xl font-bold leading-tight text-gray-950 sm:text-5xl">
+            <h1 className="mt-5 max-w-3xl text-4xl font-black leading-[1.08] tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
               Submit your CV and stay connected with internship opportunities.
             </h1>
-            <p className="mt-5 max-w-2xl text-base leading-7 text-gray-600">
+            <p className="mt-6 max-w-2xl text-base leading-7 text-slate-600">
               Use this portal to upload your latest PDF CV, review available jobs, and send feedback to the admin team.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -167,7 +169,7 @@ const Landing = () => {
                 type="button"
                 onClick={openUploadModal}
                 disabled={uploading}
-                className="inline-flex items-center justify-center gap-2 rounded-md bg-blue-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-sm font-bold text-white shadow-md shadow-blue-900/15 transition hover:-translate-y-0.5 hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 <FaFileUpload />
                 {uploading ? 'Uploading...' : 'Upload CV'}
@@ -175,7 +177,7 @@ const Landing = () => {
               <button
                 type="button"
                 onClick={() => navigate('/jobs')}
-                className="inline-flex items-center justify-center gap-2 rounded-md border border-gray-200 bg-white px-5 py-3 text-sm font-bold text-gray-800 transition hover:bg-gray-50"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-bold text-slate-800 shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-50"
               >
                 <FaBriefcase />
                 Browse jobs
@@ -183,28 +185,28 @@ const Landing = () => {
               <button
                 type="button"
                 onClick={() => navigate('/portal/apply')}
-                className="inline-flex items-center justify-center gap-2 rounded-md bg-green-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-green-700"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-5 py-3 text-sm font-bold text-white shadow-md shadow-emerald-900/10 transition hover:-translate-y-0.5 hover:bg-emerald-700"
               >
                 📋 Apply for Internship
               </button>
             </div>
           </div>
 
-          <div className="rounded-lg border border-gray-200 bg-gray-50 p-5">
+          <div className="relative rounded-3xl border border-slate-200/80 bg-slate-50/80 p-5 shadow-[0_24px_60px_-35px_rgba(15,23,42,0.42)] backdrop-blur">
             <div className="grid gap-3 sm:grid-cols-3">
               {[
                 { label: 'File type', value: 'PDF', icon: FaFileUpload },
                 { label: 'Max size', value: '10 MB', icon: FaShieldAlt },
                 { label: 'Review', value: 'Admin', icon: FaCheckCircle }
               ].map((item) => (
-                <div key={item.label} className="rounded-md border border-gray-200 bg-white p-4">
+                <div key={item.label} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
                   <item.icon className="text-blue-700" />
                   <p className="mt-4 text-xs font-bold uppercase tracking-wide text-gray-500">{item.label}</p>
                   <p className="mt-1 text-xl font-bold text-gray-950">{item.value}</p>
                 </div>
               ))}
             </div>
-            <div className="mt-5 rounded-md border border-blue-100 bg-white p-4">
+            <div className="mt-5 rounded-2xl border border-blue-100 bg-white p-5 shadow-sm">
               <p className="font-semibold text-gray-950">Before uploading</p>
               <ul className="mt-3 space-y-2 text-sm leading-6 text-gray-600">
                 <li className="flex gap-2"><FaCheckCircle className="mt-1 text-emerald-600" /> Use your latest CV.</li>

@@ -78,7 +78,7 @@ const IconButton = ({ children, className = '', ...props }) => (
   <button
     type="button"
     className={cx(
-      'inline-flex h-9 w-9 items-center justify-center rounded-md border border-gray-200 bg-white text-gray-600 transition hover:border-gray-300 hover:bg-gray-50 hover:text-gray-900 disabled:cursor-not-allowed disabled:opacity-50',
+      'inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-500 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700 disabled:cursor-not-allowed disabled:opacity-50',
       className
     )}
     {...props}
@@ -91,7 +91,7 @@ const PrimaryButton = ({ children, className = '', ...props }) => (
   <button
     type="button"
     className={cx(
-      'inline-flex items-center justify-center gap-2 rounded-md bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50',
+      'inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-bold text-white shadow-sm shadow-blue-900/10 transition hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50',
       className
     )}
     {...props}
@@ -104,7 +104,7 @@ const SecondaryButton = ({ children, className = '', ...props }) => (
   <button
     type="button"
     className={cx(
-      'inline-flex items-center justify-center gap-2 rounded-md border border-gray-200 bg-white px-4 py-2.5 text-sm font-semibold text-gray-700 transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50',
+      'inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50',
       className
     )}
     {...props}
@@ -117,7 +117,7 @@ const DangerButton = ({ children, className = '', ...props }) => (
   <button
     type="button"
     className={cx(
-      'inline-flex items-center justify-center gap-2 rounded-md bg-red-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50',
+      'inline-flex items-center justify-center gap-2 rounded-xl bg-red-600 px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50',
       className
     )}
     {...props}
@@ -127,22 +127,22 @@ const DangerButton = ({ children, className = '', ...props }) => (
 );
 
 const SectionPanel = ({ id, title, description, icon: Icon, children, action }) => (
-  <section id={id} className="rounded-lg border border-gray-200 bg-white shadow-sm">
-    <div className="flex flex-col gap-4 border-b border-gray-200 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+  <section id={id} className="portal-fade-up overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-[0_12px_35px_-25px_rgba(15,23,42,0.35)]">
+    <div className="flex flex-col gap-4 border-b border-slate-100 bg-gradient-to-r from-white to-slate-50/70 px-5 py-5 sm:flex-row sm:items-center sm:justify-between">
       <div className="flex items-start gap-3">
         {Icon && (
-          <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-blue-50 text-blue-700">
+          <div className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-700 ring-1 ring-blue-100">
             <Icon />
           </div>
         )}
         <div>
-          <h2 className="text-lg font-bold text-gray-900">{title}</h2>
-          {description && <p className="mt-1 text-sm text-gray-500">{description}</p>}
+          <h2 className="text-lg font-extrabold tracking-tight text-slate-950">{title}</h2>
+          {description && <p className="mt-1 text-sm leading-6 text-slate-500">{description}</p>}
         </div>
       </div>
       {action}
     </div>
-    <div className="p-5">{children}</div>
+    <div className="p-5 sm:p-6">{children}</div>
   </section>
 );
 
@@ -156,17 +156,17 @@ const StatCard = ({ label, value, helper, icon: Icon, tone = 'blue' }) => {
   };
 
   return (
-    <div className="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
+    <div className="group rounded-2xl border border-slate-200/80 bg-white p-5 shadow-[0_10px_30px_-24px_rgba(15,23,42,0.4)] transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-[0_18px_40px_-24px_rgba(37,99,235,0.32)]">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="text-sm font-medium text-gray-500">{label}</p>
-          <p className="mt-3 text-3xl font-bold text-gray-950">{value}</p>
+          <p className="text-sm font-semibold text-slate-500">{label}</p>
+          <p className="mt-3 text-3xl font-black tracking-tight text-slate-950">{value}</p>
         </div>
-        <div className={cx('flex h-11 w-11 items-center justify-center rounded-md', tones[tone])}>
+        <div className={cx('flex h-12 w-12 items-center justify-center rounded-xl ring-1 ring-inset ring-black/5 transition group-hover:scale-105', tones[tone])}>
           <Icon />
         </div>
       </div>
-      {helper && <p className="mt-4 text-sm text-gray-500">{helper}</p>}
+      {helper && <p className="mt-4 text-sm text-slate-500">{helper}</p>}
     </div>
   );
 };
@@ -1555,7 +1555,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div id="home" className="min-h-screen bg-gray-50 text-gray-900">
+    <div id="home" className="dashboard-surface min-h-screen bg-slate-50 text-slate-900">
       <ConfirmModal config={confirmAction} onClose={() => setConfirmAction(null)} />
       <FeedbackModal feedback={selectedFeedback} onClose={() => setSelectedFeedback(null)} />
       <ApplicationDetailModal
@@ -1565,19 +1565,22 @@ const Dashboard = () => {
         onOpenPdfDocuments={openPdfDocumentsForPrint}
       />
 
-      <div className="mx-auto flex max-w-[1500px] flex-col lg:flex-row">
-        <aside className="border-b border-gray-200 bg-white px-4 py-4 lg:sticky lg:top-16 lg:h-[calc(100vh-4rem)] lg:w-72 lg:border-b-0 lg:border-r">
-          <div className="flex items-center gap-3 px-2">
-            <div className="flex h-11 w-11 items-center justify-center rounded-md bg-blue-600 text-white">
+      <div className="mx-auto flex max-w-[1600px] flex-col lg:flex-row">
+        <aside className="dashboard-scrollbar border-b border-slate-200 bg-white px-4 py-4 lg:sticky lg:top-16 lg:h-[calc(100vh-4rem)] lg:w-72 lg:overflow-y-auto lg:border-b-0 lg:border-r lg:px-5 lg:py-6">
+          <div className="flex items-center gap-3 rounded-2xl bg-slate-950 p-4 text-white shadow-lg shadow-slate-900/10">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-500 text-white shadow-md shadow-blue-950/30">
               <FaUserShield />
             </div>
             <div>
-              <p className="text-sm font-semibold text-gray-500">Intern Portal</p>
-              <p className="text-lg font-bold text-gray-950">{isSuperAdmin ? 'Super Admin' : 'Dashboard'}</p>
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-blue-300">Intern Portal</p>
+              <p className="mt-0.5 text-base font-extrabold">{isSuperAdmin ? 'Super Admin' : 'Dashboard'}</p>
             </div>
           </div>
 
-          <nav className="mt-6 grid gap-1">
+          <p className="mt-6 hidden px-3 text-[11px] font-extrabold uppercase tracking-[0.18em] text-slate-400 lg:block">
+            Workspace
+          </p>
+          <nav className="-mx-1 mt-3 flex gap-2 overflow-x-auto px-1 pb-2 lg:mx-0 lg:grid lg:gap-1.5 lg:overflow-visible lg:px-0 lg:pb-0">
             {sections.map((section) => {
               const Icon = section.icon;
               return (
@@ -1586,50 +1589,57 @@ const Dashboard = () => {
                   type="button"
                   onClick={() => setActiveSection(section.id)}
                   className={cx(
-                    'flex items-center gap-3 rounded-md px-3 py-2.5 text-left text-sm font-semibold transition',
+                    'group relative flex shrink-0 items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-bold transition lg:w-full',
                     activeSection === section.id
-                      ? 'bg-blue-50 text-blue-700'
-                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-950'
+                      ? 'bg-blue-50 text-blue-700 ring-1 ring-inset ring-blue-100'
+                      : 'text-slate-600 hover:bg-slate-50 hover:text-slate-950'
                   )}
                 >
-                  <Icon className="text-base" />
+                  <span className={cx(
+                    'flex h-8 w-8 items-center justify-center rounded-lg transition',
+                    activeSection === section.id ? 'bg-blue-600 text-white shadow-sm' : 'bg-slate-100 text-slate-500 group-hover:bg-white'
+                  )}>
+                    <Icon className="text-sm" />
+                  </span>
                   {section.label}
+                  {activeSection === section.id && <span className="ml-auto hidden h-1.5 w-1.5 rounded-full bg-blue-600 lg:block" />}
                 </button>
               );
             })}
           </nav>
 
-          <div id="about" className="mt-8 rounded-lg border border-gray-200 bg-gray-50 p-4">
-            <p className="flex items-center gap-2 text-sm font-bold text-gray-900">
+          <div id="about" className="mt-6 hidden rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 to-indigo-50 p-4 lg:block">
+            <p className="flex items-center gap-2 text-sm font-extrabold text-slate-900">
               <FaInfoCircle className="text-blue-700" /> Admin workspace
             </p>
-            <p className="mt-2 text-sm leading-5 text-gray-500">
+            <p className="mt-2 text-sm leading-6 text-slate-500">
               Manage codes, uploaded CVs, feedback, and user access from one place.
             </p>
           </div>
 
-          <div id="contact" className="mt-4 rounded-lg border border-gray-200 bg-white p-4 text-sm text-gray-600">
-            <p className="font-bold text-gray-900">Support</p>
+          <div id="contact" className="mt-4 hidden rounded-2xl border border-slate-200 bg-white p-4 text-sm text-slate-600 lg:block">
+            <p className="font-extrabold text-slate-900">Need support?</p>
             <p className="mt-2 break-all">tameer.corvit999@gmail.com</p>
             <p className="mt-1">03174149991</p>
           </div>
         </aside>
 
-        <main className="flex-1 px-4 py-6 sm:px-6 lg:px-8">
-          <header className="mb-6 rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
+        <main className="min-w-0 flex-1 px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+          <header className="relative mb-6 overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_16px_40px_-30px_rgba(15,23,42,0.45)] sm:p-7">
+            <div className="pointer-events-none absolute -right-16 -top-24 h-64 w-64 rounded-full bg-blue-100/60 blur-3xl" />
             <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-wide text-blue-700">
+              <div className="relative">
+                <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-blue-700">
                   {isSuperAdmin ? 'Super admin console' : 'Admin console'}
                 </p>
-                <h1 className="mt-2 text-3xl font-bold text-gray-950">
+                <h1 className="mt-2 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
                   Welcome back, {user?.name || user?.email || 'Admin'}
                 </h1>
-                <p className="mt-2 max-w-3xl text-sm leading-6 text-gray-500">
-                  A cleaner command center for reviewing activity, managing access, and keeping the intern portal tidy.
+                <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-500">
+                  Review activity, manage access, and keep every internship workflow moving from one focused workspace.
                 </p>
               </div>
-              <div className="flex flex-wrap gap-3">
+              <div className="relative flex flex-wrap gap-3">
                 <PrimaryButton onClick={() => setActiveSection('access')}>
                   <FaKey /> Generate code
                 </PrimaryButton>

@@ -35,31 +35,44 @@ const Jobs = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4">
-      <div className="max-w-6xl mx-auto">
-        <h1 className="text-4xl font-bold mb-8 text-gray-800">Browse Jobs</h1>
+    <div className="min-h-screen bg-slate-50 px-4 py-10 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-8 overflow-hidden rounded-3xl bg-slate-950 px-6 py-8 text-white shadow-xl shadow-slate-900/10 sm:px-9">
+          <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-blue-300">Opportunity board</p>
+          <h1 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">Find your next opportunity</h1>
+          <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-300">
+            Explore current internships and roles, then open any listing to review the full requirements.
+          </p>
+        </div>
 
         {/* Filters */}
-        <div className="bg-white p-6 rounded-lg shadow-md mb-8">
-          <div className="grid md:grid-cols-4 gap-4">
+        <div className="mb-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-[0_12px_35px_-28px_rgba(15,23,42,0.45)] sm:p-6">
+          <div className="mb-5 flex items-center gap-3">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-700"><FaBriefcase /></span>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Search</label>
+              <h2 className="font-extrabold text-slate-950">Search & filters</h2>
+              <p className="text-xs text-slate-500">Narrow the list to the roles that fit you.</p>
+            </div>
+          </div>
+          <div className="grid gap-4 md:grid-cols-4">
+            <div>
+              <label className="mb-2 block text-sm font-bold text-slate-700">Search</label>
               <input
                 type="text"
                 name="search"
                 value={filters.search}
                 onChange={handleFilterChange}
                 placeholder="Job title, company..."
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                className="modern-input py-2.5 text-sm"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
+              <label className="mb-2 block text-sm font-bold text-slate-700">Category</label>
               <select
                 name="category"
                 value={filters.category}
                 onChange={handleFilterChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                className="modern-input py-2.5 text-sm"
               >
                 <option value="">All Categories</option>
                 <option value="Electronics">Electronics</option>
@@ -69,23 +82,23 @@ const Jobs = () => {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Location</label>
+              <label className="mb-2 block text-sm font-bold text-slate-700">Location</label>
               <input
                 type="text"
                 name="location"
                 value={filters.location}
                 onChange={handleFilterChange}
                 placeholder="City..."
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                className="modern-input py-2.5 text-sm"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Job Type</label>
+              <label className="mb-2 block text-sm font-bold text-slate-700">Job type</label>
               <select
                 name="jobType"
                 value={filters.jobType}
                 onChange={handleFilterChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                className="modern-input py-2.5 text-sm"
               >
                 <option value="">All Types</option>
                 <option value="Full-time">Full-time</option>
@@ -98,23 +111,23 @@ const Jobs = () => {
 
         {/* Job Listings */}
         {loading ? (
-          <div className="text-center py-12">Loading jobs...</div>
+          <div className="rounded-2xl border border-slate-200 bg-white py-16 text-center font-semibold text-slate-500">Loading opportunities...</div>
         ) : jobs.length > 0 ? (
-          <div className="grid gap-6">
+          <div className="grid gap-5">
             {jobs.map(job => (
               <Link key={job._id} to={`/jobs/${job._id}`}>
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition cursor-pointer">
+                <div className="group cursor-pointer rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_10px_30px_-26px_rgba(15,23,42,0.4)] transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-[0_20px_45px_-28px_rgba(37,99,235,0.38)]">
                   <div className="flex justify-between items-start mb-4">
                     <div>
-                      <h3 className="text-2xl font-bold text-gray-800 mb-2">{job.title}</h3>
-                      <p className="text-lg text-blue-600 font-semibold">{job.companyName}</p>
+                      <h3 className="mb-2 text-xl font-extrabold tracking-tight text-slate-950 transition group-hover:text-blue-700 sm:text-2xl">{job.title}</h3>
+                      <p className="font-bold text-blue-600">{job.companyName}</p>
                     </div>
-                    <span className="bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-semibold">
+                    <span className="rounded-full bg-blue-50 px-4 py-2 text-sm font-bold text-blue-700 ring-1 ring-inset ring-blue-100">
                       {job.jobType}
                     </span>
                   </div>
 
-                  <div className="flex flex-wrap gap-6 mb-4 text-gray-600">
+                  <div className="mb-4 flex flex-wrap gap-5 text-sm font-medium text-slate-500">
                     <div className="flex items-center gap-2">
                       <FaMapMarkerAlt />
                       <span>{job.location}</span>
@@ -131,11 +144,11 @@ const Jobs = () => {
                     )}
                   </div>
 
-                  <p className="text-gray-600 line-clamp-2">{job.description}</p>
+                  <p className="line-clamp-2 leading-7 text-slate-600">{job.description}</p>
                   {job.skills?.length > 0 && (
                     <div className="mt-4 flex flex-wrap gap-2">
                       {job.skills.slice(0, 3).map((skill, idx) => (
-                        <span key={idx} className="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">
+                        <span key={idx} className="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-600">
                           {skill}
                         </span>
                       ))}
@@ -146,8 +159,10 @@ const Jobs = () => {
             ))}
           </div>
         ) : (
-          <div className="text-center py-12 text-gray-500">
-            No jobs found matching your criteria.
+          <div className="rounded-2xl border border-dashed border-slate-300 bg-white py-16 text-center text-slate-500">
+            <FaBriefcase className="mx-auto mb-4 text-3xl text-slate-300" />
+            <p className="font-bold text-slate-700">No matching opportunities</p>
+            <p className="mt-1 text-sm">Try changing one or more filters.</p>
           </div>
         )}
       </div>
