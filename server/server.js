@@ -91,8 +91,27 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-}).then(() => {
+}).then(async () => {
   console.log('✅ MongoDB Connected Successfully');
+
+  // Free Render has no Shell — create default admin if missing
+  try {
+    const User = require('./models/User');
+    const email = (process.env.ADMIN_EMAIL || 'admin@internportal.com').toLowerCase();
+    const existing = await User.findOne({ email });
+    if (!existing) {
+      await User.create({
+        name: process.env.ADMIN_NAME || 'Super Admin',
+        email,
+        password: process.env.ADMIN_PASSWORD || 'Admin123!',
+        role: 'superadmin',
+        isApproved: true
+      });
+      console.log('✅ Default admin created:', email);
+    }
+  } catch (seedErr) {
+    console.error('Admin seed skipped:', seedErr.message);
+  }
 }).catch(err => {
   console.error('❌ MongoDB Connection Error:', err);
   process.exit(1);
