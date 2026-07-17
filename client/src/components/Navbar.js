@@ -76,13 +76,23 @@ const Navbar = () => {
   const handlePortalLogout = async () => {
     setShowLogoutConfirm(false);
     try {
-      await accessCodeAPI.logout();
+      // From dashboard: kick every portal session on every device
+      // From portal: invalidate this access code's sessions everywhere
+      if (isDashboardArea && isAuthenticated) {
+        await accessCodeAPI.logoutAllPortals();
+      } else {
+        await accessCodeAPI.logout();
+      }
     } catch (error) {
       // Best-effort logout.
     } finally {
       localStorage.setItem('portalLogout', Date.now().toString());
       localStorage.removeItem('accessToken');
-      toast.success('Portal logged out');
+      toast.success(
+        isDashboardArea && isAuthenticated
+          ? 'All portal sessions logged out'
+          : 'Portal logged out'
+      );
       if (isDashboardArea && isAuthenticated) {
         navigate('/dashboard', { replace: true });
       } else {

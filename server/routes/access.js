@@ -165,6 +165,7 @@ router.post('/verify-code', async (req, res) => {
     req.session.userId = accessCode.userId || null;
     req.session.internLabel = accessCode.internLabel || '';
     req.session.codeUsedAt = new Date();
+    req.session.sessionVersion = accessCode.sessionVersion || 0;
 
     res.status(200).json({
       success: true,
@@ -191,10 +192,16 @@ router.get('/verify-session', async (req, res) => {
       return res.status(401).json({ error: 'Access revoked' });
     }
 
-    const accessCode = await AccessCode.findById(accessCodeId).select('isActive expiresAt');
+    const accessCode = await AccessCode.findById(accessCodeId).select('isActive expiresAt sessionVersion');
     if (!accessCode || !accessCode.isActive || new Date() > accessCode.expiresAt) {
       req.session.destroy(() => {});
       return res.status(401).json({ error: 'Access code expired or revoked' });
+    }
+
+    // Cross-device logout: sessionVersion bumped elsewhere invalidates this session
+    if ((req.session.sessionVersion || 0) !== (accessCode.sessionVersion || 0)) {
+      req.session.destroy(() => {});
+      return res.status(401).json({ error: 'Access revoked' });
     }
 
     // Only check blocked state when this access session is tied to a user account.
@@ -218,15 +225,45 @@ router.get('/verify-session', async (req, res) => {
 });
 
 // @route   POST /api/access/logout
-// @desc    End access session
+// @desc    End access session (also invalidates this code on other devices)
 // @access  Private
-router.post('/logout', (req, res) => {
+router.post('/logout', async (req, res) => {
+  try {
+    if (req.session?.accessCodeId) {
+      await AccessCode.findByIdAndUpdate(req.session.accessCodeId, {
+        $inc: { sessionVersion: 1 }
+      });
+    }
+  } catch (error) {
+    // Continue with local session destroy even if version bump fails
+  }
+
   req.session.destroy((err) => {
     if (err) {
       return res.status(500).json({ error: 'Logout failed' });
     }
     res.status(200).json({ success: true, message: 'Logged out successfully' });
   });
+});
+
+// @route   POST /api/access/logout-all-portals
+// @desc    Invalidate every active portal session across all devices
+// @access  Admin / Superadmin
+router.post('/logout-all-portals', protect, authorize('admin'), async (req, res) => {
+  try {
+    const result = await AccessCode.updateMany(
+      { isActive: true },
+      { $inc: { sessionVersion: 1 } }
+    );
+
+    res.status(200).json({
+      success: true,
+      message: 'All portal sessions have been logged out.',
+      updated: result.modifiedCount || 0
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 // @route   GET /api/access/status/:codeId

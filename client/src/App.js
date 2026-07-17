@@ -95,7 +95,8 @@ function App() {
       }
     };
 
-    const intervalId = setInterval(check, 30000);
+    // Poll often enough so admin "Logout Portal" kicks other devices quickly
+    const intervalId = setInterval(check, 10000);
     window.addEventListener('focus', check);
     return () => {
       clearInterval(intervalId);

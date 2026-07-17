@@ -46,10 +46,13 @@ export const accessCodeAPI = {
     return accessSessionApi.get('/access/verify-session');
   },
 
-  // Logout/revoke current session
+  // Logout/revoke current session (also ends this code on other devices)
   logout: async () => {
     return accessSessionApi.post('/access/logout');
   },
+
+  // Admin: force-logout every active portal session on every device
+  logoutAllPortals: () => api.post('/access/logout-all-portals'),
 
   // Get code usage status
   getStatus: async (codeId) => {

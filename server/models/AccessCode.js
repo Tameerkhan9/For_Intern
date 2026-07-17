@@ -45,7 +45,9 @@ const accessCodeSchema = new mongoose.Schema({
     index: true
   },
   isActive: { type: Boolean, default: true },
-  revokedAt: Date
+  revokedAt: Date,
+  // Bumped to invalidate portal sessions across all devices
+  sessionVersion: { type: Number, default: 0 }
 }, { timestamps: true });
 
 module.exports = mongoose.model('AccessCode', accessCodeSchema);
