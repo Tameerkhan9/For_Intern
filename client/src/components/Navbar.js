@@ -23,7 +23,7 @@ const NavButton = ({ active, children, className = '', ...props }) => (
   <button
     type="button"
     className={cx(
-      'inline-flex items-center gap-2 rounded-xl px-3.5 py-2.5 text-sm font-bold transition',
+      'inline-flex items-center gap-2 rounded-xl px-3.5 py-2.5 text-sm font-semibold transition',
       active
         ? 'bg-blue-50 text-blue-700 shadow-sm ring-1 ring-inset ring-blue-100'
         : 'text-slate-600 hover:bg-slate-100 hover:text-slate-950',
@@ -140,7 +140,7 @@ const Navbar = () => {
               <FaMicrochip />
             </div>
             <div className="leading-tight">
-              <p className="text-base font-extrabold tracking-tight text-slate-950 dark:text-white">Intern Portal</p>
+              <p className="text-base font-semibold tracking-tight text-slate-950 dark:text-white">Intern Portal</p>
               <p className="hidden text-[11px] font-bold uppercase tracking-[0.12em] text-slate-400 dark:text-slate-500 sm:block">
                 {isDashboardArea ? 'Admin console' : 'Career portal'}
               </p>
@@ -164,7 +164,7 @@ const Navbar = () => {
             {isPortalArea && (
               <Link
                 to="/jobs"
-                className="inline-flex items-center gap-2 rounded-xl px-3.5 py-2.5 text-sm font-bold text-slate-600 transition hover:bg-white hover:text-slate-950 hover:shadow-sm"
+                className="inline-flex items-center gap-2 rounded-xl px-3.5 py-2.5 text-sm font-semibold text-slate-600 transition hover:bg-white hover:text-slate-950 hover:shadow-sm"
               >
                 <FaBriefcase className="text-xs" />
                 Jobs
@@ -184,7 +184,7 @@ const Navbar = () => {
             </button>
 
             {isDashboardArea && isAuthenticated && (
-              <div className="hidden items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-slate-700 shadow-sm lg:flex">
+              <div className="hidden items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm lg:flex">
                 <FaUserShield className="text-blue-700" />
                 {user?.name || 'Admin'}
               </div>

@@ -38,8 +38,8 @@ const Jobs = () => {
     <div className="min-h-screen bg-slate-50 px-4 py-10 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <div className="mb-8 overflow-hidden rounded-3xl bg-slate-950 px-6 py-8 text-white shadow-xl shadow-slate-900/10 sm:px-9">
-          <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-blue-300">Opportunity board</p>
-          <h1 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">Find your next opportunity</h1>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-300">Opportunity board</p>
+          <h1 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">Find your next opportunity</h1>
           <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-300">
             Explore current internships and roles, then open any listing to review the full requirements.
           </p>
@@ -50,13 +50,13 @@ const Jobs = () => {
           <div className="mb-5 flex items-center gap-3">
             <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-700"><FaBriefcase /></span>
             <div>
-              <h2 className="font-extrabold text-slate-950">Search & filters</h2>
+              <h2 className="font-semibold text-slate-950">Search & filters</h2>
               <p className="text-xs text-slate-500">Narrow the list to the roles that fit you.</p>
             </div>
           </div>
           <div className="grid gap-4 md:grid-cols-4">
             <div>
-              <label className="mb-2 block text-sm font-bold text-slate-700">Search</label>
+              <label className="mb-2 block text-sm font-semibold text-slate-700">Search</label>
               <input
                 type="text"
                 name="search"
@@ -67,7 +67,7 @@ const Jobs = () => {
               />
             </div>
             <div>
-              <label className="mb-2 block text-sm font-bold text-slate-700">Category</label>
+              <label className="mb-2 block text-sm font-semibold text-slate-700">Category</label>
               <select
                 name="category"
                 value={filters.category}
@@ -82,7 +82,7 @@ const Jobs = () => {
               </select>
             </div>
             <div>
-              <label className="mb-2 block text-sm font-bold text-slate-700">Location</label>
+              <label className="mb-2 block text-sm font-semibold text-slate-700">Location</label>
               <input
                 type="text"
                 name="location"
@@ -93,7 +93,7 @@ const Jobs = () => {
               />
             </div>
             <div>
-              <label className="mb-2 block text-sm font-bold text-slate-700">Job type</label>
+              <label className="mb-2 block text-sm font-semibold text-slate-700">Job type</label>
               <select
                 name="jobType"
                 value={filters.jobType}
@@ -119,8 +119,8 @@ const Jobs = () => {
                 <div className="group cursor-pointer rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_10px_30px_-26px_rgba(15,23,42,0.4)] transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-[0_20px_45px_-28px_rgba(37,99,235,0.38)]">
                   <div className="flex justify-between items-start mb-4">
                     <div>
-                      <h3 className="mb-2 text-xl font-extrabold tracking-tight text-slate-950 transition group-hover:text-blue-700 sm:text-2xl">{job.title}</h3>
-                      <p className="font-bold text-blue-600">{job.companyName}</p>
+                      <h3 className="mb-2 text-xl font-semibold tracking-tight text-slate-950 transition group-hover:text-blue-700 sm:text-2xl">{job.title}</h3>
+                      <p className="font-semibold text-blue-600">{job.companyName}</p>
                     </div>
                     <span className="rounded-full bg-blue-50 px-4 py-2 text-sm font-bold text-blue-700 ring-1 ring-inset ring-blue-100">
                       {job.jobType}

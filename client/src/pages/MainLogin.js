@@ -82,14 +82,14 @@ const MainLogin = ({ onLoginSuccess, onAccessCodeSuccess }) => {
                   <FaMicrochip />
                 </span>
                 <div>
-                  <p className="font-bold tracking-tight">Intern Portal</p>
+                  <p className="font-semibold tracking-tight">Intern Portal</p>
                   <p className="text-xs text-slate-300">Career operations workspace</p>
                 </div>
               </div>
 
               <div className="mt-16 max-w-lg">
-                <p className="text-sm font-bold uppercase tracking-[0.22em] text-blue-300">One connected platform</p>
-                <h1 className="mt-5 text-5xl font-black leading-[1.08] tracking-tight">
+                <p className="text-sm font-semibold uppercase tracking-[0.22em] text-blue-300">One connected platform</p>
+                <h1 className="mt-5 text-5xl font-bold leading-[1.08] tracking-tight">
                   Build better internship experiences.
                 </h1>
                 <p className="mt-6 max-w-md text-base leading-7 text-slate-300">
@@ -120,16 +120,16 @@ const MainLogin = ({ onLoginSuccess, onAccessCodeSuccess }) => {
                     <FaMicrochip />
                   </span>
                   <div>
-                    <p className="font-extrabold text-slate-950">Intern Portal</p>
+                    <p className="font-semibold text-slate-950">Intern Portal</p>
                     <p className="text-xs font-medium text-slate-500">Career operations workspace</p>
                   </div>
                 </div>
 
-                <span className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-blue-700 ring-1 ring-blue-100">
+                <span className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-blue-700 ring-1 ring-blue-100">
                   {showAccessCode ? <FaKey /> : <FaLock />}
                   {showAccessCode ? 'Intern access' : 'Secure sign in'}
                 </span>
-                <h2 className="mt-5 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+                <h2 className="mt-5 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
                   {showAccessCode ? 'Enter your access code' : 'Welcome back'}
                 </h2>
                 <p className="mt-3 text-sm leading-6 text-slate-500">
@@ -143,7 +143,7 @@ const MainLogin = ({ onLoginSuccess, onAccessCodeSuccess }) => {
           {!showAccessCode && (
             <>
               <div>
-                <label className="mb-2 block text-sm font-bold text-slate-700">Email address</label>
+                <label className="mb-2 block text-sm font-semibold text-slate-700">Email address</label>
                 <input
                   type="email"
                   name="email"
@@ -157,7 +157,7 @@ const MainLogin = ({ onLoginSuccess, onAccessCodeSuccess }) => {
                 />
               </div>
               <div>
-                <label className="mb-2 block text-sm font-bold text-slate-700">Password</label>
+                <label className="mb-2 block text-sm font-semibold text-slate-700">Password</label>
                 <PasswordInput
                   name="password"
                   value={form.password}
@@ -173,7 +173,7 @@ const MainLogin = ({ onLoginSuccess, onAccessCodeSuccess }) => {
 
           {showAccessCode && (
             <div>
-              <label className="mb-2 block text-sm font-bold text-slate-700">Access code</label>
+              <label className="mb-2 block text-sm font-semibold text-slate-700">Access code</label>
               <input
                 type="text"
                 name="accessCode"
@@ -199,7 +199,7 @@ const MainLogin = ({ onLoginSuccess, onAccessCodeSuccess }) => {
                 setShowAccessCode((value) => !value);
                 setForm({ email: '', password: '', accessCode: '' });
               }}
-              className="flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold text-slate-600 transition hover:bg-white hover:text-blue-700 hover:shadow-sm"
+              className="flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold text-slate-600 transition hover:bg-white hover:text-blue-700 hover:shadow-sm"
             >
               {showAccessCode ? <FaLock /> : <FaKey />}
               {showAccessCode ? 'Back to account sign in' : 'New intern? Use an access code'}
@@ -209,7 +209,7 @@ const MainLogin = ({ onLoginSuccess, onAccessCodeSuccess }) => {
           <button
             type="submit"
             disabled={loading}
-            className="group flex w-full items-center justify-center gap-3 rounded-2xl bg-slate-950 px-5 py-4 text-base font-extrabold text-white shadow-lg shadow-slate-900/15 transition hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-900/20 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0"
+            className="group flex w-full items-center justify-center gap-3 rounded-2xl bg-slate-950 px-5 py-4 text-base font-semibold text-white shadow-lg shadow-slate-900/15 transition hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-900/20 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0"
           >
             <span>
               {loading

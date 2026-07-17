@@ -91,7 +91,7 @@ const PrimaryButton = ({ children, className = '', ...props }) => (
   <button
     type="button"
     className={cx(
-      'inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-bold text-white shadow-sm shadow-blue-900/10 transition hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50',
+      'inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm shadow-blue-900/10 transition hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50',
       className
     )}
     {...props}
@@ -104,7 +104,7 @@ const SecondaryButton = ({ children, className = '', ...props }) => (
   <button
     type="button"
     className={cx(
-      'inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50',
+      'inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50',
       className
     )}
     {...props}
@@ -136,7 +136,7 @@ const SectionPanel = ({ id, title, description, icon: Icon, children, action }) 
           </div>
         )}
         <div>
-          <h2 className="text-lg font-extrabold tracking-tight text-slate-950">{title}</h2>
+          <h2 className="text-lg font-semibold tracking-tight text-slate-950">{title}</h2>
           {description && <p className="mt-1 text-sm leading-6 text-slate-500">{description}</p>}
         </div>
       </div>
@@ -159,8 +159,8 @@ const StatCard = ({ label, value, helper, icon: Icon, tone = 'blue' }) => {
     <div className="group rounded-2xl border border-slate-200/80 bg-white p-5 shadow-[0_10px_30px_-24px_rgba(15,23,42,0.4)] transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-[0_18px_40px_-24px_rgba(37,99,235,0.32)]">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="text-sm font-semibold text-slate-500">{label}</p>
-          <p className="mt-3 text-3xl font-black tracking-tight text-slate-950">{value}</p>
+          <p className="text-sm font-medium text-slate-500">{label}</p>
+          <p className="mt-3 text-3xl font-bold tracking-tight text-slate-950">{value}</p>
         </div>
         <div className={cx('flex h-12 w-12 items-center justify-center rounded-xl ring-1 ring-inset ring-black/5 transition group-hover:scale-105', tones[tone])}>
           <Icon />
@@ -1573,7 +1573,7 @@ const Dashboard = () => {
             </div>
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-blue-300">Intern Portal</p>
-              <p className="mt-0.5 text-base font-extrabold">{isSuperAdmin ? 'Super Admin' : 'Dashboard'}</p>
+              <p className="mt-0.5 text-base font-semibold">{isSuperAdmin ? 'Super Admin' : 'Dashboard'}</p>
             </div>
           </div>
 
@@ -1589,7 +1589,7 @@ const Dashboard = () => {
                   type="button"
                   onClick={() => setActiveSection(section.id)}
                   className={cx(
-                    'group relative flex shrink-0 items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-bold transition lg:w-full',
+                    'group relative flex shrink-0 items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-semibold transition lg:w-full',
                     activeSection === section.id
                       ? 'bg-blue-50 text-blue-700 ring-1 ring-inset ring-blue-100'
                       : 'text-slate-600 hover:bg-slate-50 hover:text-slate-950'
@@ -1632,7 +1632,7 @@ const Dashboard = () => {
                 <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-blue-700">
                   {isSuperAdmin ? 'Super admin console' : 'Admin console'}
                 </p>
-                <h1 className="mt-2 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+                <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
                   Welcome back, {user?.name || user?.email || 'Admin'}
                 </h1>
                 <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-500">

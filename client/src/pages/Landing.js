@@ -27,7 +27,7 @@ const ActionCard = ({ icon: Icon, title, description, action, children }) => (
         <Icon />
       </div>
       <div className="min-w-0 flex-1">
-        <h3 className="text-lg font-extrabold tracking-tight text-slate-950">{title}</h3>
+        <h3 className="text-lg font-semibold tracking-tight text-slate-950">{title}</h3>
         <p className="mt-2 text-sm leading-6 text-slate-500">{description}</p>
       </div>
     </div>
@@ -158,7 +158,7 @@ const Landing = () => {
               <FaMicrochip />
               Intern Career Portal
             </div>
-            <h1 className="mt-5 max-w-3xl text-4xl font-black leading-[1.08] tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
+            <h1 className="mt-5 max-w-3xl text-4xl font-bold leading-[1.08] tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
               Submit your CV and stay connected with internship opportunities.
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-7 text-slate-600">
@@ -342,23 +342,23 @@ const Landing = () => {
 
       <section id="contact" className="px-4 py-10 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-5 md:grid-cols-3">
-          <div className="md:col-span-2 rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
+          <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5 shadow-sm md:col-span-2">
             <div className="flex gap-4">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-blue-50 text-blue-700">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-emerald-600 text-white shadow-sm">
                 <FaHeadset />
               </div>
               <div>
-                <h2 className="text-lg font-bold text-gray-950">Need help?</h2>
-                <p className="mt-2 text-sm leading-6 text-gray-600">
+                <h2 className="text-lg font-semibold text-emerald-950">Need help?</h2>
+                <p className="mt-2 text-sm leading-6 text-emerald-800">
                   Contact support for access-code issues, CV upload problems, or dashboard assistance.
                 </p>
               </div>
             </div>
           </div>
-          <div className="rounded-lg border border-gray-200 bg-gray-950 p-5 text-white shadow-sm">
-            <p className="font-bold">Support contact</p>
-            <p className="mt-3 break-all text-sm text-gray-300">tameer.corvit999@gmail.com</p>
-            <p className="mt-2 text-sm text-gray-300">03174149991</p>
+          <div className="rounded-2xl border border-emerald-200 bg-emerald-100/70 p-5 text-emerald-950 shadow-sm">
+            <p className="font-semibold">Support contact</p>
+            <p className="mt-3 break-all text-sm text-emerald-800">tameer.corvit999@gmail.com</p>
+            <p className="mt-2 text-sm text-emerald-800">03174149991</p>
           </div>
         </div>
       </section>
